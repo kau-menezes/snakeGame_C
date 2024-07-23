@@ -23,35 +23,37 @@ void generate_apple(int map[MAP_HEIGHT][MAP_WIDTH], Apple *apple)
 
 void render_map(int map[MAP_HEIGHT][MAP_WIDTH])
 {
-    for (int i = 0; i < MAP_WIDTH; i++) 
+    for (int i = 0; i < MAP_WIDTH + 2; i++) 
     {
-        printf("#");
+        printf("[]");
     }
+
+    printf("\n");
 
     for ( int i = 0; i < MAP_HEIGHT; i++)
     {
-        printf("#");
+        printf("[]");
 
         for (int j = 0; j < MAP_WIDTH; j++)
         {
             if (map[i][j] == 0)
             {
-                printf(" ");
+                printf("  ");
             } else if (map[i][j] == 1) {
-                printf("o");
+                printf(" @");
             } else if (map[i][j] == 9) {
-                printf("+");
+                printf(" +");
             }
         }    
         
-        printf("#");
+        printf("[]");
         printf("\n");
        
     }
-    
-    for (int i = 0; i < MAP_WIDTH; i++) 
+
+    for (int i = 0; i < MAP_WIDTH + 2; i++) 
     {
-        printf("#");
+        printf("[]");
     }
 
 }
