@@ -8,72 +8,68 @@
 #include "structs.h" 
 #include "render_map.h" 
 
-void snake_next_movement(Snake *snake)
+void getting_to_the_tail(int map[MAP_HEIGHT][MAP_WIDTH], SnakeNode * node, SnakeNode * old_position)
+{
+    if (node == NULL)
+    {
+        map[old_position->current_position[1]][old_position->current_position[0]] = 0;
+        return;
+    }
+
+    getting_to_the_tail(map, node->next, node);
+
+    node->current_position[0] = old_position->current_position[0];
+    node->current_position[1] = old_position->current_position[1];
+
+}
+
+void snake_next_movement(int map[MAP_HEIGHT][MAP_WIDTH], Snake *snake)
 {
     printf("alguma coisa");
+
+    SnakeNode head_copy = *snake->head;
+
     // dictates the snake's head next position by its direction
     switch (snake->direction)
     {
-        case 0:
-            snake->head->next_position[1] = snake->head->current_position[1] + 1;
+        case 12:
+            snake->head->current_position[0] = snake->head->current_position[0] - 1;
             break;
 
         case 3:
-            snake->head->next_position[0] = snake->head->current_position[0] + 1;
+            snake->head->current_position[1] = snake->head->current_position[1] + 1;
             break;
 
         case 6:
-            snake->head->next_position[1] = snake->head->current_position[1] - 1;
+            snake->head->current_position[0] = snake->head->current_position[0] + 1;
             break;
 
         case 9:
-            snake->head->next_position[0] = snake->head->current_position[0] - 1;
+            snake->head->current_position[1] = snake->head->current_position[1] - 1;
             break;
         
         default:
             break;
     }
 
-    SnakeNode * current = snake->head->next;
+    getting_to_the_tail(map, snake->head->next, &head_copy);
 
-    while (current->next != NULL)
-    {
-        current->next_position[0] = current->next->current_position[0];
-        current->next_position[1] = current->next->current_position[1]; 
-
-        current = current->next;
-    }
-    
 }
 
 void snake_movement(int map[MAP_HEIGHT][MAP_WIDTH], Snake *snake)
 {
-    printf("alguma coisa");
 
     SnakeNode * current = snake->head;
 
-    while (current->next != NULL)
+    while (current != NULL)
     {
-        if (current == snake->head)
-        {
-            current->current_position[0] = current->next_position[0];
-            current->current_position[1] = current->next_position[1];
-
-        }
-
-        current->current_position[0] = current->next->current_position[0];
-        current->current_position[1] = current->next->current_position[1];
-
-        // remove its previous space in the map
-        map[current->current_position[1]][current->current_position[0]] = 0;
         
         // appears in its previously thought next position
-        map[current->next_position[1]][current->next_position[0]] = snake->value;
+        map[current->current_position[1]][current->current_position[0]] = snake->value;
 
         // itters trough the loop
         current = current->next;
     }
-
 
 }
 

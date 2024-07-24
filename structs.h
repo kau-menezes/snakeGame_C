@@ -4,7 +4,6 @@
 typedef struct SnakeNode {
 
     int current_position[2];
-    // int next_position[2];
     struct SnakeNode *next;
 
 } SnakeNode;
@@ -32,8 +31,6 @@ Snake construct_snake()
 
     new_node->current_position[0] = 20;
     new_node->current_position[1] = 20;
-    // new_node->next_position[0] = 20;
-    // new_node->next_position[1] = 21;
 
     return new_snake;
 }

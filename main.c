@@ -21,11 +21,11 @@ int main()
 
     Snake snake = construct_snake();
 
-    Apple apple = construct_apple();
+    // Apple apple = construct_apple();
 
-    generate_apple(map, &apple);
+    // generate_apple(map, &apple);
 
-    snake_movement(map, &snake);
+    // snake_movement(map, &snake);
 
     render_map(map);  
 }
