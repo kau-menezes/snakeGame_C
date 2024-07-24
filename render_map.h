@@ -27,6 +27,7 @@ void render_map(int map[MAP_HEIGHT][MAP_WIDTH])
     {
         printf("[]");
     }
+    
 
     printf("\n");
 

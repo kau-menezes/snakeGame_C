@@ -3,6 +3,7 @@
 
 #include "structs.h"
 #include "render_map.h"
+#include "snake.h"
 
 int main()
 {
@@ -23,6 +24,8 @@ int main()
     Apple apple = construct_apple();
 
     generate_apple(map, &apple);
+
+    snake_movement(map, &snake);
 
     render_map(map);  
 }
